@@ -26,18 +26,18 @@ const current = Astro.url.pathname.replace(/\/$/, '');
 
 <style>
   .plate {
-    padding: 22px clamp(18px, 4vw, 48px) 20px;
+    padding: 28px clamp(20px, 4.4vw, 64px) 24px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
   }
   .bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; }
-  .tag { margin: 0; font-size: 14px; line-height: 1.35; max-width: 200px; }
-  .est { margin: 0; font-size: 15px; text-align: right; }
-  .seal { width: 72px; height: 72px; }
+  .tag { margin: 0; font-size: 18px; line-height: 1.35; max-width: 280px; }
+  .est { margin: 0; font-size: 20px; text-align: right; }
+  .seal { width: 100px; height: 100px; }
 
-  .nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 30px; }
-  .nav a { position: relative; color: var(--on-field); text-decoration: none; font-size: 17px; padding: 4px 0; }
+  .nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 44px; }
+  .nav a { position: relative; color: var(--on-field); text-decoration: none; font-size: 23px; padding: 6px 0; }
   .nav a::after {
     content: "";
     position: absolute;
@@ -59,7 +59,7 @@ const current = Astro.url.pathname.replace(/\/$/, '');
   @container (max-width: 640px) {
     .bar { grid-template-columns: 1fr; justify-items: center; gap: 8px; }
     .side { display: none; }
-    .nav { gap: 4px 18px; }
-    .nav a { font-size: 16px; }
+    .nav { gap: 4px 22px; }
+    .nav a { font-size: 20px; }
   }
 </style>

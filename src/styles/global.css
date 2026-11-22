@@ -37,7 +37,7 @@ a:hover { color: var(--field); }
 
 /* Engraved double frame around the header plate */
 .plate {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
   background: var(--field);
