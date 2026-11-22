@@ -1,0 +1,46 @@
+---
+/* Inner pages: compact plate, a single 640px reading column, footer. */
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Vertical space between sections. */
+  gap?: number;
+}
+
+const { title, description, gap = 56 } = Astro.props;
+---
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main class="page">
+    <div class="sections" style={`gap: ${gap}px`}>
+      <slot />
+    </div>
+    <footer class="page-foot">
+      <SiteFooter />
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .page { max-width: 640px; margin: 0 auto; box-sizing: border-box; padding: clamp(40px, 6vw, 72px) 20px 32px; }
+  .sections { display: flex; flex-direction: column; }
+  .page-foot { margin-top: 72px; padding-top: 14px; border-top: 1px solid var(--rule-strong); }
+  :global(.intro) .page { animation: hrs-fade 1.6s ease .1s both; }
+
+  /* Shared prose styles for inner pages */
+  .page :global(p) { margin: 0; }
+  .page :global(.stack) { display: flex; flex-direction: column; gap: 16px; }
+  .page :global(.h1) { margin: 0; font-size: 36px; line-height: 1.1; color: var(--ink); }
+  .page :global(.h2) { margin: 0; font-size: 22px; line-height: 1.2; color: var(--ink); }
+  .page :global(.lede) { font-size: 19px; line-height: 1.6; }
+  .page :global(.body) { font-size: 16px; line-height: 1.7; }
+  .page :global(.sub) { font-style: italic; font-size: 15px; color: var(--ink-soft); }
+
+  @container (max-width: 640px) {
+    .page :global(.h1) { font-size: 30px; }
+  }
+</style>

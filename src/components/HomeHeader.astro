@@ -1,0 +1,107 @@
+---
+/* The home page plate: tagline, crest, and a colonnade of five capitals. */
+import { site, nav } from '../data/site';
+---
+<header class="plate">
+  <div class="head">
+    <p class="tag bl">{site.tagline}</p>
+    <a href="/" class="seal" aria-label={`${site.name}, home`}>
+      <img src="/images/seal.png" alt="" width="112" height="112" />
+    </a>
+    <p class="est bl">{site.established}</p>
+  </div>
+
+  <nav aria-label="Main">
+    <div class="colonnade">
+      {nav.map((item, i) => (
+        <a class="col-link" href={item.href}>
+          <span class="col-stack">
+            <img class="col-img" src={item.column} alt="" style={`animation-delay: ${0.5 + i * 0.25}s`} />
+          </span>
+          <span class="col-text" style={`animation-delay: ${1.6 + i * 0.25}s`}>
+            <span class="col-label bl">{item.label}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<style>
+  .plate {
+    padding: clamp(22px, 3vw, 36px) clamp(18px, 4vw, 56px) clamp(26px, 3.5vw, 42px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 2.6vw, 32px);
+  }
+
+  .head { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; }
+  .tag { margin: 0; font-size: 15px; line-height: 1.35; max-width: 220px; text-align: left; }
+  .est { margin: 0; font-size: 16px; line-height: 1.2; text-align: right; }
+  .seal { width: 112px; height: 112px; }
+
+  .colonnade { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(6px, 1.6vw, 24px); }
+  .col-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--on-field);
+    border-radius: 4px;
+    outline: none;
+  }
+  .col-link:hover { color: var(--on-field); }
+  .col-link:focus-visible { box-shadow: 0 0 0 3px var(--focus-on-field); }
+  .col-stack { position: relative; width: 100%; opacity: .86; transition: opacity .8s ease; }
+  .col-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  }
+  .col-link:hover .col-stack, .col-link:focus-visible .col-stack { opacity: 1; }
+  .col-text { display: flex; flex-direction: column; align-items: center; margin-top: 12px; text-align: center; }
+  .col-label { position: relative; font-size: 18px; line-height: 1.1; padding-bottom: 4px; }
+  .col-label::after {
+    content: "";
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 0;
+    height: 1px;
+    background: rgba(242, 255, 247, .7);
+    opacity: 0;
+    transition: opacity .8s ease;
+  }
+  .col-link:hover .col-label::after, .col-link:focus-visible .col-label::after { opacity: 1; }
+
+  /* Intro: a slow, quiet fade */
+  :global(.intro) .seal img { animation: hrs-settle 2.2s cubic-bezier(.25, .6, .3, 1) .2s both; }
+  :global(.intro) .col-img { animation: hrs-rise 2.4s cubic-bezier(.25, .6, .3, 1) both; }
+  :global(.intro) .col-text, :global(.intro) .tag, :global(.intro) .est { animation: hrs-fade 2s ease both; }
+  :global(.intro) .tag, :global(.intro) .est { animation-delay: 1.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .col-stack, .col-label::after { transition: none; }
+  }
+
+  /* Narrow: the colonnade becomes a list of capitals */
+  @container (max-width: 760px) {
+    .head { grid-template-columns: 1fr; justify-items: center; gap: 12px; }
+    .seal { order: -1; width: 96px; height: 96px; }
+    .tag, .est { text-align: center; }
+    .colonnade { grid-template-columns: 1fr; gap: 0; }
+    .col-link {
+      flex-direction: row;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 2px;
+      border-bottom: 1px solid rgba(214, 255, 234, .3);
+    }
+    .col-stack { width: 48px; height: 48px; overflow: hidden; flex: none; }
+    .col-img { -webkit-mask-image: none; mask-image: none; }
+    .col-text { align-items: flex-start; text-align: left; margin-top: 0; gap: 2px; }
+    .col-label::after { left: 0; right: auto; width: 100%; }
+  }
+</style>

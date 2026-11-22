@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../data/site';
+---
+<BaseLayout>
+  <HomeHeader />
+
+  <main class="home">
+    <section class="sec">
+      <div class="ph" role="img" aria-label="Photo placeholder"><span>[Photo: a gathering or experiment in the lab]</span></div>
+      <p class="copy">Heterodox Research Society is organized around the mission of advancing radical, open, decentralized science through novel research, events and cultural engagement.</p>
+    </section>
+
+    <section class="sec flip">
+      <figure class="plate-img">
+        <img src="/images/edge-of-the-sky.jpg" width="587" height="484" alt="Engraving of a traveller pushing his head through the edge of the sky to see the workings of the heavens beyond" />
+      </figure>
+      <p class="copy">We take our lead from the long history of inquiry into nature: natural philosophy, the open experiment, and the heterodox ideas that have so often moved science forward.</p>
+    </section>
+
+    <section class="sec">
+      <figure class="plate-img">
+        <img src="/images/lab-building.png" width="420" height="357" alt="Pen drawing of the lab's brick building in Downtown Norfolk, with its iron fire escapes" />
+      </figure>
+      <p class="copy">Our philosophy and science lab is in Downtown Norfolk, Virginia. <a class="ink-link" href={`mailto:${site.email}`}>Come visit us.</a></p>
+    </section>
+
+    <footer class="home-foot">
+      <NewsletterForm />
+      <SiteFooter />
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .home {
+    max-width: 960px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: clamp(40px, 6vw, 80px) clamp(18px, 4vw, 56px) 32px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 7vw, 88px);
+  }
+
+  .sec { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .sec.flip { grid-template-columns: minmax(0, 4fr) minmax(0, 5fr); }
+  .sec.flip > :first-child { order: 2; }
+
+  .copy { margin: 0; font-size: 17px; line-height: 1.65; max-width: 26em; }
+
+  .plate-img { margin: 0; padding: 6px; border: 1px solid rgba(23, 51, 41, .45); background: var(--paper); }
+  .plate-img img { display: block; width: 100%; height: auto; }
+
+  .ph {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: 1px solid rgba(23, 51, 41, .45);
+    background: var(--placeholder);
+    box-sizing: border-box;
+  }
+  .ph span { font-style: italic; font-size: 13px; color: var(--ink-soft); text-align: center; }
+
+  .home-foot { display: flex; flex-direction: column; gap: 20px; padding-top: 16px; border-top: 1px solid var(--rule-strong); }
+
+  @container (max-width: 760px) {
+    .sec, .sec.flip { grid-template-columns: 1fr; gap: 18px; }
+    .sec.flip > :first-child { order: 0; }
+    .copy { font-size: 16px; }
+    .ph, .plate-img { max-width: 240px; }
+  }
+</style>

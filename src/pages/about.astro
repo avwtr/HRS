@@ -1,0 +1,43 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import RuledList from '../components/RuledList.astro';
+import { site } from '../data/site';
+
+const principles = [
+  { name: 'Radical', text: 'We take up fringe questions and unconventional methods, including intuition, beauty and metaphysical speculation.' },
+  { name: 'Open', text: 'Openness inside the work, not only in publishing it: across disciplines, and in the spirit of open-source culture.' },
+  { name: 'Decentralized', text: 'We back independent researchers and amateurs, and science that does not wait for institutional permission.' },
+];
+---
+<PageLayout title="About">
+  <section class="stack">
+    <h1 class="h1 bl">About</h1>
+    <p class="lede">Heterodox Research Society exists to return science to a broader, more open and more human idea of inquiry. We work under the banner Reditus ad Naturam: a return to nature.</p>
+    <p class="body">Science has grown rigid and narrowly specialized, and it produces less per researcher and per dollar than it once did. We read the reproducibility crisis as a symptom of something deeper: science has lost its understanding of itself.</p>
+    <p class="body">Our founding manifesto draws on Paul Feyerabend's critique of method, setting his open-ended account of progress against those of Popper and Kuhn, and questions the post-war institutions that traded exploration for safety and legibility.</p>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">What we hold to</h2>
+    <RuledList>
+      {principles.map((p) => (
+        <li><span class="bl principle">{p.name}</span><span>{p.text}</span></li>
+      ))}
+    </RuledList>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">What we do</h2>
+    <p class="body">We carry out original research on neglected questions, plan grants for independent researchers and decentralized labs, and bring the work to the public through essays, videos and events. We think of the Society as something to be cultivated rather than built.</p>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">Founders</h2>
+    <p class="body">Alexander Vawter and Zachary Lubick.</p>
+    <p class="body">Write to us at <a class="u" href={`mailto:${site.email}`}>{site.email}</a>, or visit the lab at 273 Granby St, Suite 250, in Downtown Norfolk.</p>
+  </section>
+</PageLayout>
+
+<style>
+  .principle { font-size: 19px; }
+</style>

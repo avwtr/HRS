@@ -1,0 +1,56 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../data/site';
+---
+<PageLayout title="Patronage">
+  <section class="stack">
+    <h1 class="h1 bl">Patronage</h1>
+    <p class="lede">We are a small team in Norfolk, building from scratch. Patrons fund our research programs, grants, events and the lab itself.</p>
+    <p class="body">{site.legal} Gifts are tax-deductible to the extent the law allows.</p>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">By card</h2>
+    <p class="body">Give once or every month.</p>
+    <div><a class="btnlink" href="https://donate.stripe.com/8wMeXV9QF2F73i84gh">Become a patron</a></div>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">In crypto</h2>
+    <p class="body">USDC or ETH, on the Base network only. Any other asset or network may be lost for good.</p>
+    <p class="sub">USDC on Base</p>
+    <p class="addr">[USDC address: copy exactly from the current site]</p>
+    <p class="sub">ETH on Base</p>
+    <p class="addr">[ETH address: copy exactly from the current site]</p>
+    <p class="body">For a receipt, or to be listed as a donor, write to <a class="u" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">Prints and shirts</h2>
+    <p class="body">Contra Methodum, The Great Ocean of Truth, and more at <a class="u" href="https://shop.heterodoxlabs.com">shop.heterodoxlabs.com</a>.</p>
+  </section>
+</PageLayout>
+
+<style>
+  .addr {
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 13px;
+    word-break: break-all;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 8px 10px;
+  }
+  .btnlink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 18px;
+    background: var(--field);
+    color: var(--on-field);
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 2px;
+  }
+  .btnlink:hover { color: var(--on-field); filter: brightness(1.15); }
+  .btnlink:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+</style>

@@ -1,0 +1,42 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import RuledList from '../components/RuledList.astro';
+import { writing, shelves } from '../data/library';
+---
+<PageLayout title="Library">
+  <section class="stack">
+    <h1 class="h1 bl">Library</h1>
+    <p class="lede">Our own writing, and a selection from the books and papers we keep. Most of them are on the shelves at the lab.</p>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">Our writing</h2>
+    <RuledList>
+      {writing.map((w) => (
+        <li>
+          <span class="when">{w.kind}</span>
+          <span><a class="u" href={w.href}>{w.title}</a><br /><span class="sub">{w.by}</span></span>
+        </li>
+      ))}
+    </RuledList>
+  </section>
+
+  <section class="stack">
+    <h2 class="h2 bl">From the shelves</h2>
+    <ul class="books">
+      {shelves.map((b) => (
+        <li>{b.title}<span>{b.author}</span></li>
+      ))}
+    </ul>
+    <p class="sub">[A selection of 237 titles. Link to the full catalogue.]</p>
+  </section>
+</PageLayout>
+
+<style>
+  .books { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 32px; font-size: 15px; line-height: 1.5; }
+  .books li { break-inside: avoid; padding: 0 0 10px; }
+  .books span { display: block; font-style: italic; font-size: 13px; color: var(--ink-soft); }
+  @container (max-width: 640px) {
+    .books { columns: 1; }
+  }
+</style>

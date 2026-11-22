@@ -1,0 +1,51 @@
+---
+/*
+ * The design shows the form only; it is not yet connected to a mailing
+ * list. Set `action` to your provider's endpoint to make it live.
+ */
+interface Props {
+  action?: string;
+}
+const { action } = Astro.props;
+---
+<form class="news" method="post" action={action} data-newsletter={action ? undefined : 'unwired'}>
+  <label for="hrs-email">Newsletter</label>
+  <input id="hrs-email" name="email" class="input" type="email" placeholder="you@example.org" autocomplete="email" required />
+  <button class="btn" type="submit">Subscribe</button>
+</form>
+
+<script>
+  // Until a provider is configured, keep the form from posting to the page itself.
+  document.querySelectorAll<HTMLFormElement>('form[data-newsletter="unwired"]').forEach((form) => {
+    form.addEventListener('submit', (e) => e.preventDefault());
+  });
+</script>
+
+<style>
+  .news { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  label { font-size: 14px; }
+  .input {
+    flex: 1 1 180px;
+    min-height: 40px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+  }
+  .btn {
+    min-height: 40px;
+    padding: 0 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--on-field);
+    background: var(--field);
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .btn:hover { filter: brightness(1.15); }
+  .input:focus-visible, .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+</style>

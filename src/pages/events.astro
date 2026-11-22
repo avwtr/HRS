@@ -1,0 +1,24 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import RuledList from '../components/RuledList.astro';
+import { events } from '../data/events';
+---
+<PageLayout title="Events" gap={40}>
+  <section class="stack">
+    <h1 class="h1 bl">Events</h1>
+    <p class="lede">Gatherings at the lab, and talks wherever people are asking how science should work. We also host weekly meetups and work sessions in Norfolk.</p>
+  </section>
+
+  <RuledList>
+    {events.map((e) => (
+      <li>
+        <span class="when">{e.when}</span>
+        <span><span class="bl event-title">{e.title}</span><br />{e.detail}</span>
+      </li>
+    ))}
+  </RuledList>
+</PageLayout>
+
+<style>
+  .event-title { font-size: 18px; }
+</style>

@@ -1,0 +1,19 @@
+---
+import { site } from '../data/site';
+---
+<div class="foot">
+  <p>{site.legal}</p>
+  <p>{site.address}</p>
+</div>
+
+<style>
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  p { margin: 0; }
+</style>

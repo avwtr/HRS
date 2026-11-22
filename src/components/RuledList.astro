@@ -1,0 +1,21 @@
+---
+/* A list with hairline rules: a narrow label column and a body column. */
+---
+<ul class="rows"><slot /></ul>
+
+<style>
+  .rows { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+  .rows :global(> li) {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .rows :global(.when) { font-style: italic; font-size: 14px; color: var(--ink-soft); padding-top: 2px; }
+  @container (max-width: 640px) {
+    .rows :global(> li) { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>

@@ -1,0 +1,66 @@
+/* Design tokens — Heterodox Research Society */
+:root {
+  --ground: #CFF7E4;        /* page background */
+  --ink: #173329;           /* body text */
+  --ink-soft: #2E5646;      /* captions, dates, footer */
+  --field: #2F6450;         /* engraved header plate, buttons */
+  --on-field: #F2FFF7;      /* text on the plate */
+  --paper: #F0FCF5;         /* image mats, inputs */
+  --placeholder: #BDEBD5;
+  --frame-outer: rgba(214, 255, 234, .55);
+  --frame-inner: rgba(214, 255, 234, .85);
+  --rule: rgba(23, 51, 41, .3);
+  --rule-strong: rgba(23, 51, 41, .35);
+  --focus-on-field: #A9CFF5;
+
+  --font-body: 'IM Fell English', Georgia, serif;
+  --font-blackletter: 'UnifrakturMaguntia', 'IM Fell English', serif;
+}
+
+html { background: var(--ground); }
+body { margin: 0; background: var(--ground); color: var(--ink); }
+
+a { color: var(--ink); }
+a:hover { color: var(--field); }
+
+/* Root wrapper: everything responds to its own width */
+.hrs {
+  container-type: inline-size;
+  font-family: var(--font-body);
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: clamp(12px, 3vw, 48px);
+}
+
+/* Blackletter display face */
+.bl { font-family: var(--font-blackletter); font-weight: 400; }
+
+/* Engraved double frame around the header plate */
+.plate {
+  max-width: 960px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background: var(--field);
+  color: var(--on-field);
+  border: 1px solid var(--frame-outer);
+  outline: 3px solid var(--frame-inner);
+  outline-offset: -10px;
+}
+
+/* Crest */
+.seal { display: block; border-radius: 50%; }
+.seal img { width: 100%; height: 100%; display: block; filter: drop-shadow(0 2px 5px rgba(10, 40, 28, .22)); }
+.seal:focus-visible { outline: 2px solid var(--focus-on-field); outline-offset: 3px; }
+
+/* Underlined text link */
+a.u, .ink-link { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a.u:hover, .ink-link:hover { color: var(--field); }
+a.u:focus-visible, .ink-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+@keyframes hrs-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hrs-settle { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: none; } }
+@keyframes hrs-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro * { animation: none !important; }
+}
